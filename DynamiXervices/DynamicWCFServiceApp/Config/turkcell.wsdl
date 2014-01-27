@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://service.invoice.turkcell.com.tr" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax21="http://service.invoice.turkcell.com.tr/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://service.invoice.turkcell.com.tr">
+    <wsdl:documentation>
+		Please Type your service description here
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ax22="http://service.invoice.turkcell.com.tr/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://service.invoice.turkcell.com.tr">
+            <xs:import namespace="http://service.invoice.turkcell.com.tr/xsd"/>
+            <xs:element name="pay">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="ax21:PaymentRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax21:PaymentResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://service.invoice.turkcell.com.tr/xsd">
+            <xs:complexType name="RequestBase">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="requestDate" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="requestId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PaymentRequest">
+                <xs:complexContent>
+                    <xs:extension base="ax21:RequestBase">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="paymentInfo" nillable="true" type="ax21:PaymentInfo"/>
+                            <xs:element minOccurs="0" name="subscriberInfo" nillable="true" type="ax21:SubscriberInfo"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="PaymentInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="invoiceNumber" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="payment" nillable="true" type="ax21:Money"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Money">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="amount" type="xs:double"/>
+                    <xs:element minOccurs="0" name="currency" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SubscriberInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="fullName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="identityNumber" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="msisdn" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ResponseBase">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="requestId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="responseDate" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PaymentResponse">
+                <xs:complexContent>
+                    <xs:extension base="ax21:ResponseBase">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="paymentCode" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="payRequest">
+        <wsdl:part name="parameters" element="ns:pay"/>
+    </wsdl:message>
+    <wsdl:message name="payResponse">
+        <wsdl:part name="parameters" element="ns:payResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="PaymentServicePortType">
+        <wsdl:operation name="pay">
+            <wsdl:input message="ns:payRequest" wsaw:Action="urn:pay"/>
+            <wsdl:output message="ns:payResponse" wsaw:Action="urn:payResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PaymentServiceSoap11Binding" type="ns:PaymentServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="pay">
+            <soap:operation soapAction="urn:pay" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="PaymentServiceSoap12Binding" type="ns:PaymentServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="pay">
+            <soap12:operation soapAction="urn:pay" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="PaymentServiceHttpBinding" type="ns:PaymentServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="pay">
+            <http:operation location="pay"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PaymentService">
+        <wsdl:port name="PaymentServiceHttpSoap11Endpoint" binding="ns:PaymentServiceSoap11Binding">
+            <soap:address location="http://localhost:8080/Turkcell/services/PaymentService.PaymentServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="PaymentServiceHttpSoap12Endpoint" binding="ns:PaymentServiceSoap12Binding">
+            <soap12:address location="http://localhost:8080/Turkcell/services/PaymentService.PaymentServiceHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="PaymentServiceHttpEndpoint" binding="ns:PaymentServiceHttpBinding">
+            <http:address location="http://localhost:8080/Turkcell/services/PaymentService.PaymentServiceHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

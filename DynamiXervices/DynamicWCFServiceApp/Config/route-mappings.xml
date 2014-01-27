@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<route-mapping>
+  <route key="Avea"
+         mode="asmx"
+         wsdlUri="file:///C:\Mehmet\DynamicServices\DynamicWCFServiceApp\Config\avea.wsdl"
+         address="http://localhost:38857/Avea.asmx"
+         source="Intertech.Payment.DynamicPaymentService.Pay"
+         target="Avea.DoPayment">
+    <input>
+      <map source="request.SubscriberNumber" target="request.MSISDN" />
+      <map source="request.Amount" target="request.Amount" />
+    </input>
+    <output>
+      <map source="ResultCode" target="ResultCode" />
+      <map source="Message" target="Message" />
+    </output>
+  </route>
+  <route key="Vodafone"
+         mode="asmx"
+         wsdlUri="file:///C:\Mehmet\DynamicServices\DynamicWCFServiceApp\Config\vodafone.wsdl"
+         address="http://localhost:38857/Vodafone.asmx"
+         source="Intertech.Payment.DynamicPaymentService.Pay"
+         target="Vodafone.PayInvioce">
+    <input>
+      <map source="request.SubscriberNumber" target="request.MSISDN" />
+      <map source="request.RequestId" target="request.RequestId" />
+      <map source="request.RequestDate" target="request.RequestTime" />
+    </input>
+    <output>
+      <map source="IsSuccessful" target="IsSuccessful" />
+      <map source="Info" target="Message" />
+      <map source="RequestId" target="RequestId" />
+      <map source="ResponseId" target="ResponseId" />
+      <map source="ResponseTime" target="ResponseDate" />
+    </output>
+  </route>
+  <route key="Bedas"
+         mode="wcf"
+         wsdlUri="file:///C:\Mehmet\DynamicServices\DynamicWCFServiceApp\Config\bedas.wsdl"
+         address="http://localhost:38857/Bedas.svc/http"
+         source="Intertech.Payment.DynamicPaymentService.Pay"
+         target="BedasClient.FaturaOde">
+    <input>
+      <map source="request.SubscriberNumber" target="fatura.AboneNo" />
+      <map source="request.Amount" target="fatura.OdemeMiktari" />
+      <map source="request.RequestDate" target="fatura.OdemeZamani" />
+    </input>
+    <output>
+      <map source="Sonuc" target="IsSuccessful" />
+      <map source="Mesaj" target="Message" />
+    </output>
+  </route>
+  <route key="Iski"
+         mode="wcf"
+         wsdlUri="file:///C:\Mehmet\DynamicServices\DynamicWCFServiceApp\Config\iski.wsdl"
+         address="http://localhost:38857/Iski.svc/ws"
+         source="Intertech.Payment.DynamicPaymentService.Pay"
+         target="IskiClient.FaturaOde">
+    <input>
+      <map source="request.BankCode" target="faturaBilgisi.BankaKodu" />
+      <map source="request.ReceiptNumber" target="faturaBilgisi.DekontNo" />
+      <map source="request.InvoiceNumber" target="faturaBilgisi.FaturaNo" />
+      <map source="request.Message" target="faturaBilgisi.OdemeNotu" />
+      <map source="request.RequestId" target="faturaBilgisi.IstekNo" />
+      <map source="request.RequestDate" target="faturaBilgisi.IstekZamani" />
+    </input>
+    <output>
+      <map source="Bilgi" target="Message" />
+      <map source="IstekNo" target="RequestId" />
+      <map source="IslemNo" target="ProcessNumber" />
+      <map source="IslemSonucKodu" target="ResultCode" />
+      <map source="IslemZamani" target="ResponseDate" />
+    </output>
+  </route>
+  <route key="Turkcell"
+         mode="asmx"
+         wsdlUri="file:///C:\Mehmet\DynamicServices\DynamicWCFServiceApp\Config\turkcell.wsdl"
+         address="http://localhost:9080/Turkcell/services/PaymentService.PaymentServiceHttpEndpoint"
+         source="Intertech.Payment.DynamicPaymentService.Pay"
+         target="PaymentService.pay">
+    <input>
+      <map source="request.RequestDate" target="request.requestDate" />
+      <map source="request.RequestId" target="request.requestId" />
+      <map source="request.SubscriberNumber" target="request.subscriberInfo.msisdn" />
+      <map source="request.IdentityNumber" target="request.subscriberInfo.identityNumber" />
+      <map source="request.FullName" target="request.subscriberInfo.fullName" />
+      <map source="request.InvoiceNumber" target="request.paymentInfo.invoiceNumber" />
+      <map source="request.Amount" target="request.paymentInfo.payment.amount" />
+      <map source="request.Currency" target="request.paymentInfo.payment.currency" />
+    </input>
+    <output>
+      <map source="message" target="Message" />
+      <map source="requestId" target="RequestId" />
+      <map source="paymentCode" target="ProcessNumber" />
+      <map source="resultCode" target="ResultCode" />
+      <map source="responseDate" target="ResponseDate" />
+    </output>
+  </route>
+  <route key="TurkcellAxis"
+         mode="asmx"
+         wsdlUri="file:///C:\Mehmet\DynamicServices\DynamicWCFServiceApp\Config\turkcell-axis.wsdl"
+         address="http://localhost:8080/Axis/services/PaymentService"
+         source="Intertech.Payment.DynamicPaymentService.Pay"
+         target="PaymentServiceService.pay">
+    <input>
+      <map source="request.RequestDate" target="request.requestDate" />
+      <map source="request.RequestId" target="request.requestId" />
+      <map source="request.SubscriberNumber" target="request.subscriberInfo.msisdn" />
+      <map source="request.IdentityNumber" target="request.subscriberInfo.identityNumber" />
+      <map source="request.FullName" target="request.subscriberInfo.fullName" />
+      <map source="request.InvoiceNumber" target="request.paymentInfo.invoiceNumber" />
+      <map source="request.Amount" target="request.paymentInfo.payment.amount" />
+      <map source="request.Currency" target="request.paymentInfo.payment.currency" />
+    </input>
+    <output>
+      <map source="message" target="Message" />
+      <map source="requestId" target="RequestId" />
+      <map source="paymentCode" target="ProcessNumber" />
+      <map source="resultCode" target="ResultCode" />
+      <map source="responseDate" target="ResponseDate" />
+    </output>
+  </route>
+</route-mapping>

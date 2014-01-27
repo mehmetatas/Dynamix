@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<route-mapping>
+  <route key="Target" source="TestConsole.Routing.SourceService.SourceMethod" target="TestConsole.Routing.TargetService.TargetMethod">
+    <input>
+      <map source="request.Username" target="usr" />
+      <map source="request.Password" target="pwd" />
+      <map source="request.Time" target="req.DateTime" />
+      <map source="transactionId" target="req.TransId" />
+      <map source="x" target="a" />
+    </input>
+    <output>
+      <map source="IsSuccessful" target="Successful" />
+      <map source="Status" target="ResultCode" />
+      <map source="DateTime" target="Time" />
+      <map source="Info" target="Message" />
+    </output>
+  </route>
+  <route key="Target" source="TestConsole.Routing.SourceService.Test" target="TestConsole.Routing.TargetService.Deneme">
+    <input />
+    <output />
+  </route>
+  <route key="Target" source="TestConsole.Routing.SourceService.Sum" target="TestConsole.Routing.TargetService.Topla">
+    <input>
+      <map source="x" target="b" />
+      <map source="y" target="a" />
+    </input>
+    <output />
+  </route>
+  <route key="Target" source="TestConsole.Routing.SourceService.Mult" target="TestConsole.Routing.TargetService.Carp">
+    <input>
+      <map source="x" target="a" />
+      <map source="y" target="b" />
+    </input>
+    <output>
+      <map source="Sonuc" target="" />
+    </output>
+  </route>
+  <route key="Target" source="TestConsole.Routing.SourceService.Subs" target="TestConsole.Routing.TargetService.Cikar">
+    <input>
+      <map source="x" target="a" />
+      <map source="y" target="b" />
+    </input>
+    <output>
+      <map source="" target="Result" />
+    </output>
+  </route>
+</route-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<swsdl>
+  <types>
+    <type type="Intertech.Test.User" namespace="http://dynamic.services.intertech.com.tr/">
+      <property type="System.Int32" name="Id" />
+      <property type="System.String" name="Name" />
+      <property type="System.String" name="Surname" />
+      <property type="System.DateTime" name="DateOfBirth" />
+    </type>
+  </types>
+  <services>
+    <service name="UserService" type="Intertech.Test.UserService" namespace="http://dynamic.services.intertech.com.tr/">
+      <method name="AddUser" type="System.String">
+        <input name="user" type="Intertech.Test.User" />
+      </method>
+      <method name="Sum" type="System.Int32">
+        <input name="x" type="System.Int32" />
+        <input name="y" type="System.Int32" />
+      </method>
+    </service>
+  </services>
+</swsdl>

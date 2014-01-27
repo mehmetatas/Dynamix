@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<swsdl>
+  <types>
+    <type type="Intertech.Test.Category" namespace="http://dynamic.services.intertech.com.tr/">
+      <property name="Id" type="System.Int32"/>
+      <property name="Name" type="System.String"/>
+      <property name="Albums" type="Intertech.Test.Album[]" />
+    </type>
+    <type type="Intertech.Test.User" namespace="http://dynamic.services.intertech.com.tr/">
+      <property name="Id" type="System.Int32" />
+      <property name="Name" type="System.String" />
+      <property name="Surname" type="System.String" />
+      <property name="Username" type="System.String" />
+      <property name="Password" type="System.String" />
+      <property name="DateOfBirth" type="System.DateTime" />
+      <property name="Albums" type="Intertech.Test.Album[]" />
+    </type>
+    <type type="Intertech.Test.Album" namespace="http://dynamic.services.intertech.com.tr/">
+      <property name="Id" type="System.Int32"/>
+      <property name="User" type="Intertech.Test.User"/>
+      <property name="Category" type="Intertech.Test.Category"/>
+      <property name="Title" type="System.String"/>
+      <property name="CreateDate" type="System.DateTime"/>
+      <property name="Photos" type="Intertech.Test.Photo[]" />
+    </type>
+    <type type="Intertech.Test.Photo" namespace="http://dynamic.services.intertech.com.tr/">
+      <property name="Id" type="System.Int32"/>
+      <property name="Album" type="Intertech.Test.Album"/>
+      <property name="Caption" type="System.String"/>
+      <property name="Bytes" type="System.Byte[]"/>
+    </type>
+  </types>
+  <services>
+    <service name="Interech.Test.Service" namespace="http://dynamic.services.intertech.com.tr/">
+      <method name="CreateUser" type="System.String">
+          <input name="user" type="Intertech.Test.User" />
+      </method>
+      <method name="CreteAlbum" type="System.Int32">
+          <input name="userId" type="System.Int32" />
+          <input name="categoryId" type="System.Int32" />
+          <input name="albumTitle" type="System.String" />
+      </method>
+      <method name="AddPhoto" type="System.Void">
+          <input name="albumId" type="System.Int32" />
+          <input name="photo" type="Intertech.Test.Photo" />
+      </method>
+      <method name="GetUser" type="Intertech.Test.User">
+          <input name="userId" type="System.Int32" />
+      </method>
+      <method name="GetUsers" type="Intertech.Test.User[]">
+      </method>
+      <method name="GetAlbums" type="Intertech.Test.Album[]">
+          <input name="userId" type="System.Int32" />
+      </method>
+      <method name="GetPhotos" type="Intertech.Test.Photo[]">
+        <inputs>
+          <input name="albumId" type="System.Int32" />
+        </inputs>
+      </method>
+    </service>
+  </services>
+</swsdl>

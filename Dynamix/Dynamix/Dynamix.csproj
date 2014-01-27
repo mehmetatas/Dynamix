@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A88E0F26-DC10-45EA-8CE6-2EC26D0C81FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dynamix</RootNamespace>
+    <AssemblyName>Dynamix</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Builder\AssemblyBuilder.cs" />
+    <Compile Include="Builder\ClassBuilder.cs" />
+    <Compile Include="Builder\ClassBuilderBase.cs" />
+    <Compile Include="Builder\ConstructBuilderBase.cs" />
+    <Compile Include="Builder\ConstructorBuilder.cs" />
+    <Compile Include="Builder\DelegateBuilder.cs" />
+    <Compile Include="Builder\DelegateBuilderBase.cs" />
+    <Compile Include="Builder\EnumBuilder.cs" />
+    <Compile Include="Builder\EnumBuilderBase.cs" />
+    <Compile Include="Builder\EventBuilder.cs" />
+    <Compile Include="Builder\ExpressionEmitVisitor.cs" />
+    <Compile Include="Builder\FieldBuilder.cs" />
+    <Compile Include="Builder\IndexerBuilder.cs" />
+    <Compile Include="Builder\InterfaceBuilder.cs" />
+    <Compile Include="Builder\InterfaceBuilderBase.cs" />
+    <Compile Include="Builder\InterfaceEventBuilder.cs" />
+    <Compile Include="Builder\InterfaceIndexerBuilder.cs" />
+    <Compile Include="Builder\InterfaceMethodBuilder.cs" />
+    <Compile Include="Builder\InterfacePropertyBuilder.cs" />
+    <Compile Include="Builder\MethodBodyBuilder.cs" />
+    <Compile Include="Builder\MethodBuilder.cs" />
+    <Compile Include="Builder\NestedClassBuilder.cs" />
+    <Compile Include="Builder\NestedDelegateBuilder.cs" />
+    <Compile Include="Builder\NestedEnumBuilder.cs" />
+    <Compile Include="Builder\NestedInterfaceBuilder.cs" />
+    <Compile Include="Builder\NestedStructBuilder.cs" />
+    <Compile Include="Builder\PropertyBuilder.cs" />
+    <Compile Include="Builder\StructBuilder.cs" />
+    <Compile Include="Builder\StructBuilderBase.cs" />
+    <Compile Include="Builder\TypeBuilder.cs" />
+    <Compile Include="Builder\IMemberBuilder.cs" />
+    <Compile Include="Compiler.cs" />
+    <Compile Include="Expressions\InstantiateExpression.cs" />
+    <Compile Include="Expressions\NewLocalExpression.cs" />
+    <Compile Include="Metadata\Assembly.cs" />
+    <Compile Include="Metadata\Class.cs" />
+    <Compile Include="Metadata\ClassBase.cs" />
+    <Compile Include="Metadata\Construct.cs" />
+    <Compile Include="Metadata\ConstructMember.cs" />
+    <Compile Include="Metadata\Constructor.cs" />
+    <Compile Include="Metadata\Delegate.cs" />
+    <Compile Include="Metadata\DelegateBase.cs" />
+    <Compile Include="Metadata\Element.cs" />
+    <Compile Include="Metadata\Enum.cs" />
+    <Compile Include="Metadata\EnumBase.cs" />
+    <Compile Include="Metadata\Enums.cs" />
+    <Compile Include="Metadata\EnumValue.cs" />
+    <Compile Include="Metadata\Event.cs" />
+    <Compile Include="Expressions\AddArgsExpression.cs" />
+    <Compile Include="Expressions\AddExpression.cs" />
+    <Compile Include="Expressions\CallExpression.cs" />
+    <Compile Include="Expressions\CompositeExpression.cs" />
+    <Compile Include="Expressions\EmptyMethodBodyExpression.cs" />
+    <Compile Include="Expressions\Expression.cs" />
+    <Compile Include="Expressions\IExpression.cs" />
+    <Compile Include="Expressions\LoadArgByNameExpression.cs" />
+    <Compile Include="Expressions\LoadArgExpression.cs" />
+    <Compile Include="Expressions\LoadConstExpression.cs" />
+    <Compile Include="Expressions\LoadLocalExpression.cs" />
+    <Compile Include="Expressions\MethodCallExpression.cs" />
+    <Compile Include="Expressions\DeclareLocalExpression.cs" />
+    <Compile Include="Expressions\EmptyMethodBodyDefaultReturnValue.cs" />
+    <Compile Include="Expressions\ReturnExpression.cs" />
+    <Compile Include="Expressions\ReturnLocalExpression.cs" />
+    <Compile Include="Expressions\SetLocalExpression.cs" />
+    <Compile Include="Expressions\SetNewLocalExpression.cs" />
+    <Compile Include="Metadata\Field.cs" />
+    <Compile Include="Metadata\GenericType.cs" />
+    <Compile Include="Metadata\GenericTypeParameter.cs" />
+    <Compile Include="Metadata\ImplementorBase.cs" />
+    <Compile Include="Metadata\Indexer.cs" />
+    <Compile Include="Metadata\INestedType.cs" />
+    <Compile Include="Metadata\Interface.cs" />
+    <Compile Include="Metadata\InterfaceBase.cs" />
+    <Compile Include="Metadata\InterfaceEvent.cs" />
+    <Compile Include="Metadata\InterfaceIndexer.cs" />
+    <Compile Include="Metadata\InterfaceMember.cs" />
+    <Compile Include="Metadata\InterfaceMethod.cs" />
+    <Compile Include="Metadata\InterfaceProperty.cs" />
+    <Compile Include="Metadata\InterfacePropertyBase.cs" />
+    <Compile Include="Metadata\IType.cs" />
+    <Compile Include="Metadata\ITypeInfo.cs" />
+    <Compile Include="Metadata\MemberBase.cs" />
+    <Compile Include="Metadata\MemberWithBody.cs" />
+    <Compile Include="Metadata\Method.cs" />
+    <Compile Include="Metadata\MethodBody.cs" />
+    <Compile Include="Metadata\NamedElement.cs" />
+    <Compile Include="Metadata\NestedClass.cs" />
+    <Compile Include="Metadata\NestedDelegate.cs" />
+    <Compile Include="Metadata\NestedEnum.cs" />
+    <Compile Include="Metadata\NestedInterface.cs" />
+    <Compile Include="Metadata\NestedStruct.cs" />
+    <Compile Include="Metadata\Parameter.cs" />
+    <Compile Include="Metadata\PolymorphicMethod.cs" />
+    <Compile Include="Metadata\Property.cs" />
+    <Compile Include="Metadata\PropertyAccessorBase.cs" />
+    <Compile Include="Metadata\PropertyBase.cs" />
+    <Compile Include="Metadata\ReturnValue.cs" />
+    <Compile Include="Metadata\StaticType.cs" />
+    <Compile Include="Metadata\Struct.cs" />
+    <Compile Include="Metadata\StructBase.cs" />
+    <Compile Include="Metadata\TypeBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\AttributeExtensions.cs" />
+    <Compile Include="Utils\DynamicObject.cs" />
+    <Compile Include="Utils\ParentChildList.cs" />
+    <Compile Include="Utils\ReflectionExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

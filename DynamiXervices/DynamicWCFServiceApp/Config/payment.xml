@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<swsdl>
+  <types>
+    <type type="Intertech.Payment.PaymentRequest" namespace="http://dynamic.services.intertech.com.tr/">
+      <property type="System.String" name="SubscriberNumber" />
+      <property type="System.Double" name="Amount" />
+      <property type="System.String" name="Currency" />
+      <property type="System.String" name="RequestId" />
+      <property type="System.DateTime" name="RequestDate" />
+      <property type="System.String" name="ReceiptNumber" />
+      <property type="System.String" name="BankCode" />
+      <property type="System.String" name="Message" />
+      <property type="System.String" name="InvoiceNumber" />
+      <property type="System.String" name="IdentityNumber" />
+      <property type="System.String" name="FullName" />
+      <property type="System.String" name="CompanyCode" />
+    </type>
+    <type type="Intertech.Payment.PaymentResponse" namespace="http://dynamic.services.intertech.com.tr/">
+      <property type="System.Boolean" name="IsSuccessful" />
+      <property type="System.String" name="Message" />
+      <property type="System.String" name="ResponseId" />
+      <property type="System.String" name="RequestId" />
+      <property type="System.DateTime" name="ResponseDate" />
+      <property type="System.Int32" name="ResultCode" />
+      <property type="System.String" name="ProcessNumber" />
+    </type>
+  </types>
+  <services>
+    <service name="DynamicPaymentService" type="Intertech.Payment.DynamicPaymentService" namespace="http://dynamic.services.intertech.com.tr/">
+      <method name="Pay" type="Intertech.Payment.PaymentResponse">
+        <input name="request" type="Intertech.Payment.PaymentRequest" />
+      </method>
+    </service>
+  </services>
+</swsdl>

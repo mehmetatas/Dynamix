@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://invoice.vodafone.com.tr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://invoice.vodafone.com.tr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://invoice.vodafone.com.tr/">
+      <s:element name="PayInvioce">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:VodafoneInvoiceRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VodafoneInvoiceRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:VodafoneRequestBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MSISDN" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="VodafoneRequestBase">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RequestId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequestTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PayInvioceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PayInvioceResult" type="tns:VodafoneInvoiceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VodafoneInvoiceResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:VodafoneReponseBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IsSuccessful" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Info" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="VodafoneReponseBase">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RequestId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResponseTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PayInvioceSoapIn">
+    <wsdl:part name="parameters" element="tns:PayInvioce" />
+  </wsdl:message>
+  <wsdl:message name="PayInvioceSoapOut">
+    <wsdl:part name="parameters" element="tns:PayInvioceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="VodafoneSoap">
+    <wsdl:operation name="PayInvioce">
+      <wsdl:input message="tns:PayInvioceSoapIn" />
+      <wsdl:output message="tns:PayInvioceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VodafoneSoap" type="tns:VodafoneSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PayInvioce">
+      <soap:operation soapAction="http://invoice.vodafone.com.tr/PayInvioce" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VodafoneSoap12" type="tns:VodafoneSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PayInvioce">
+      <soap12:operation soapAction="http://invoice.vodafone.com.tr/PayInvioce" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Vodafone">
+    <wsdl:port name="VodafoneSoap" binding="tns:VodafoneSoap">
+      <soap:address location="http://localhost:38857/Vodafone.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VodafoneSoap12" binding="tns:VodafoneSoap12">
+      <soap12:address location="http://localhost:38857/Vodafone.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
